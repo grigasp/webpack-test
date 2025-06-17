@@ -1,4 +1,4 @@
-import { using } from './test-using.js';
+import { using, using as asyncUsing } from './test-using.js';
 
 async function testUsing() {
     const input = {
@@ -9,6 +9,9 @@ async function testUsing() {
     const p = using(input, async () => {});
     await p;
 
-    // this does not work:
+    // this also works:
+    await asyncUsing(input, async () => {});
+
+    // this does NOT work:
     await using(input, async () => {});
 }
